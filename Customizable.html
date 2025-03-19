@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An open-source games site hosting 500+ games, utilities, powerful settings + a clean user interface">
+    <title>Reid Settings</title>
+
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background-color: #222;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Container for the content */
+        #content-side {
+            padding: 20px;
+            max-width: 1000px;
+            width: 100%;
+            height: auto;
+            overflow-y: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            background: #333;
+        }
+
+        /* Headings and Text */
+        h1 {
+            color: #3a5f3a;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 1em;
+        }
+
+        a {
+            color: #3a5f3a;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        /* Form Elements */
+        select, button, input[type="text"], input[type="url"], input[type="color"], input[type="radio"] {
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #3a5f3a;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            width: 100%;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #3a5f3a;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2c472c;
+        }
+
+        #panicKey, #panicUrl {
+            width: auto;
+            max-width: 300px;
+        }
+
+        #success, #success-panic {
+            color: #3a5f3a;
+            display: none;
+        }
+
+        /* Flexbox for form sections */
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section label {
+            font-size: 1.1em;
+            margin-right: 10px;
+        }
+
+        .form-section input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        /* Button Group Styling */
+        .buttons-group {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            body {
+                justify-content: flex-start;
+            }
+
+            #content-side {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            button, select, input[type="text"], input[type="url"], input[type="color"], input[type="radio"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="content-side">
+        <h1>Settings</h1>
+        <a href="index.html" style="font-size: 1.2em;">Go to Homepage</a>
+
+        <div class="form-section">
+            <h2>Tab Cloaking</h2>
+            <select id="presetSelect">
+                <option value="google">Google</option>
+                <option value="googleclassroom">Google Classroom</option>
+                <option value="googledrive">Google Drive</option>
+                <option value="chrometab">Chrome New Tab</option>
+                <option value="gmail">Gmail</option>
+                <option value="bing">Bing</option>
+                <option value="desmos">Desmos Calculator</option>
+                <option value="wikipedia">Wikipedia</option>
+            </select>
+            <div class="buttons-group">
+                <button id="saveButton">Select Cloak</button>
+                <button id="resetButton">Reset Cloak</button>
+            </div>
+            <p id="success">Success message here</p>
+        </div>
+
+        <div class="form-section">
+            <h2>Panic Mode</h2>
+            <input type="text" id="panicKey" placeholder="Choose a key combination" readonly>
+            <input type="url" id="panicUrl" placeholder="https://www.desmos.com/scientific">
+            <button onclick="saveSettings()">Set Panic Key</button>
+            <p id="success-panic">Success message here</p>
+        </div>
+
+        <div class="form-section">
+            <h2>Data Management</h2>
+            <div class="buttons-group">
+                <button onclick="importData()">Import Data</button>
+                <button onclick="exportData()">Export Data</button>
+                <button onclick="clearData()">Clear Data</button>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Other</h2>
+            <p><u>Link Behaviour</u></p>
+            <div>
+                <label>
+                    <input type="radio" name="openBlankSetting" value="true"> Open links in new tab
+                </label>
+                <label>
+                    <input type="radio" name="openBlankSetting" value="false"> Open links in same tab
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script src="/storage/js/cloak.js"></script>
+    <script src="/storage/js/data.js"></script>
+    <script src="/storage/js/settings.js"></script>
+</body>
+</html>
