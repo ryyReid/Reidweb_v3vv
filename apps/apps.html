@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reid Apps</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1a1a1a, #333);
+            color: #fff;
+        }
+        header {
+            background: #444;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav ul li a:hover {
+            background: #3a5f3a;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: url('hero-image.jpg') center/cover no-repeat;
+        }
+        .hero h2 {
+            font-size: 36px;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .feature-card {
+            background: #555;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #3a5f3a;
+            transition: background 0.3s;
+        }
+        .feature-card:hover {
+            background: #444;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+        }
+        .feature-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #3a5f3a;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .feature-btn:hover {
+            background: #2c472c;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 20px;
+            background: #222;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Reid Apps</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <h2>Welcome to Reid Apps</h2>
+        <p>Your gateway to a world of retro and modern gaming.</p>
+    </section>
+    <section id="features" class="features">
+        <div class="feature-card">
+            <h3>Ruffle</h3>
+            <p>Emulate thousands of Flash games.</p>
+            <a href="ruffle/index.html" class="feature-btn">Play Ruffle</a>
+        </div>
+        <div class="feature-card">
+            <h3>EmulatorJS</h3>
+            <p>Run retro ROMs from various consoles.</p>
+            <a href="emulatorjs/index.html" class="feature-btn">Play EmulatorJS</a>
+        </div>
+        <div class="feature-card">
+            <h3>WebGL Fluids</h3>
+            <p>Fluid simulations in WebGL.</p>
+            <a href="fluidsim/index.html" class="feature-btn">Explore Fluids</a>
+        </div>
+        <div class="feature-card">
+            <h3>Thirty Dollar Website</h3>
+            <p>Create music from meme sounds.</p>
+            <a href="thirtydollarwebsite/index.html" class="feature-btn">Try Music Maker</a>
+        </div>
+        <div class="feature-card">
+            <h3>Windows 11</h3>
+            <p>Recreation of Windows 11 in React.</p>
+            <a href="windows11/index.html" class="feature-btn">Try Windows 11</a>
+        </div>
+        <div class="feature-card">
+            <h3>TurboWarp</h3>
+            <p>Scratch mod for better performance.</p>
+            <a href="turbowarp/index.html" class="feature-btn">Explore TurboWarp</a>
+        </div>
+        <div class="feature-card">
+            <h3>TurboWarp Packager</h3>
+            <p>Package Scratch projects for multiple platforms.</p>
+            <a href="turbowarpkg/index.html" class="feature-btn">Use Packager</a>
+        </div>
+        <div class="feature-card">
+            <h3>TurboWarp Unpackager</h3>
+            <p>Unpack Scratch projects from packaged files.</p>
+            <a href="turbowarpunpkg/index.html" class="feature-btn">Unpack Projects</a>
+        </div>
+        <div class="feature-card">
+            <h3>WeaveSilk</h3>
+            <p>Create beautiful flowing artwork.</p>
+            <a href="weavesilk/index.html" class="feature-btn">Create Art</a>
+        </div>
+        <div class="feature-card">
+            <h3>WebRetro</h3>
+            <p>Upload ROMs to retro consoles.</p>
+            <a href="webretro/index.html" class="feature-btn">Upload ROMs</a>
+        </div>
+        <div class="feature-card">
+            <h3>HTML Coder</h3>
+            <p>Create static HTML pages.</p>
+            <a href="htmlcoder/index.html" class="feature-btn">Start Coding</a>
+        </div>
+        <div class="feature-card">
+            <h3>v86</h3>
+            <p>Emulate x86 systems in the browser.</p>
+            <a href="v86/index.html" class="feature-btn">Try v86</a>
+        </div>
+        <div class="feature-card">
+            <h3>Calculator</h3>
+            <p>Perform basic arithmetic functions.</p>
+            <a href="calculator/index.html" class="feature-btn">Use Calculator</a>
+        </div>
+        <div class="feature-card">
+            <h3>Etch a Sketch</h3>
+            <p>Create pixel art like the classic toy.</p>
+            <a href="etchasketch/index.html" class="feature-btn">Sketch Now</a>
+        </div>
+        <div class="feature-card">
+            <h3>Zip Opener</h3>
+            <p>Open and view files in a ZIP archive.</p>
+            <a href="zipopener/index.html" class="feature-btn">Open ZIP</a>
+        </div>
+        <div class="feature-card">
+            <h3>Godoblocks</h3>
+            <p>Recreate the 2005 Roblox beta era in Godot.</p>
+            <a href="godoblocks/index.html" class="feature-btn">Explore Godoblocks</a>
+        </div>
+        <div class="feature-card">
+            <h3>Emu OS</h3>
+            <p>EmuOS web is a web-based platform that allows users to run and experience classic computer operating systems like Windows 95, 98</p>
+            <a href="EmuOS/index.html" class="feature-btn">Explore Emu OS</a>
+        </div>
+    </section>
+    <div class="buttons">
+        <a href="#">Get Started</a>
+        <a href="#">Learn More</a>
+        <a href="#">Contact Us</a>
+    </div>
+    <footer>
+        <p>&copy; 2025 Reid Apps. All rights reserved.</p>
+    </footer>
+
+    <script src="/storage/js/cloak.js"></script>
+    <script src="/storage/js/data.js"></script>
+    <script src="/storage/js/settings.js"></script>
+</body>
+</html>
