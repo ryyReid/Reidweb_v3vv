@@ -36,6 +36,8 @@ A big thank you to:
 - **ObsidiansUnblockedRevamped**: For their open-source contributions and inspiration for the unblocked games platform.  
   [ObsidiansUnblockedRevamped GitHub](https://github.com/Obsidian-ig/ObsidiansUnblockedRevamped)
 
+  **Itch.io**
+
 ## Contributing
 
 If you have suggestions or would like to contribute to the project, feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/TheReid45/reid-_-unblocked).
