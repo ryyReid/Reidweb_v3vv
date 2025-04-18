@@ -121,6 +121,7 @@
         }
     </style>
 </head>
+<script src="/storage/js/cloak.js"></script>
 <body>
     <header>
         <h1>Reid Apps</h1>
@@ -142,6 +143,7 @@
             <h3>Play Anywhere</h3>
             <p>Access your favorite games offline or online with ease.</p>
             <a href="games/games.html" class="feature-btn">|| Play Now ||</a>
+            <a href="games/games1.html" class="feature-btn">|| update Play Now ||</a>
         </div>
         <div class="feature">
             <h3>Customizable</h3>
@@ -162,8 +164,18 @@
     <footer>
         <p>&copy; 2025 Reid Apps. All rights reserved.</p>
     </footer>
-    <script src="storage/js/cloak.js"></script>
-    <script src="storage/js/settings.js"></script>
-    <script src="storage/js/data.js"></script>
+<script src="/storage/js/cloak.js"></script>
+<script src="/storage/js/settings.js"></script>
+<script src="/storage/js/data.js"></script>
+
+<script>
+// Auto cloak on page load
+window.addEventListener('load', () => {
+    const saved = localStorage.getItem('tabCloak');
+    if (saved) {
+        setCloak(saved); // Calls the function from cloak.js
+    }
+});
+</script>
 </body>
 </html>

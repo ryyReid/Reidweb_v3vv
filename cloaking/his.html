@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reid | Settings</title>
+  <link rel="icon" type="image/x-icon" href="/storage/images/default.ico">
+  <script src="/storage/js/cloak.js"></script> <!-- new cloak system -->
+  <style>
+    /* your style unchanged */
+    body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background: #1a1a1a; color: #fff; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; min-height: 100vh; }
+    header { background: #333; padding: 20px; width: 100%; text-align: center; }
+    header h1 { margin: 0; font-size: 2.5em; color: #3a5f3a; }
+    #content-side { padding: 30px; max-width: 500px; width: 100%; margin-top: 30px; background: #2c2c2c; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); text-align: center; }
+    h2 { font-size: 1.8em; margin-bottom: 15px; }
+    .form-section { margin-bottom: 25px; }
+    select, button { padding: 12px; width: 100%; font-size: 1.1em; margin-bottom: 15px; border: 2px solid #3a5f3a; border-radius: 8px; background-color: #333; color: #fff; }
+    button { background-color: #3a5f3a; cursor: pointer; transition: background-color 0.3s; }
+    button:hover { background-color: #2c472c; }
+    footer { margin-top: 30px; padding: 15px; background: #222; text-align: center; width: 100%; }
+    footer p { margin: 0; color: #888; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Reid Settings</h1>
+  </header>
+
+  <div id="content-side">
+    <h2>Tab Cloaking</h2>
+    <div class="form-section">
+      <select id="presetSelect">
+        <option value="google">Google</option>
+        <option value="gmail">Gmail</option>
+        <option value="bing">Bing</option>
+        <option value="desmos">Desmos</option>
+        <option value="games">Games</option>
+        <option value="apps">Apps</option>
+      </select>
+      <button id="saveButton">Select Cloak</button>
+      <button id="resetButton">Reset Cloak</button>
+      <p id="success">Success message here</p>
+    </div>
+
+    <div class="feature">
+      <h3>Home</h3>
+      <a href="../index.html" class="feature-btn">|| Back ||</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Reid Apps. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Save Cloak
+    document.getElementById('saveButton').addEventListener('click', () => {
+      const selectedPreset = document.getElementById('presetSelect').value;
+      setCloak(selectedPreset);
+      document.getElementById('success').textContent = `Cloaked as ${selectedPreset}! ✅`;
+    });
+
+    // Reset Cloak
+    document.getElementById('resetButton').addEventListener('click', () => {
+      resetCloak();
+      document.getElementById('success').textContent = `Cloak reset to default. 🧹`;
+    });
+  </script>
+</body>
+</html>

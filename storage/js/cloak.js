@@ -1,123 +1,81 @@
-function setCookie(name, value, options) {
-    options = options || {};
+// storage/js/cloak.js
 
-    let expires = options.expires;
-
-    if (typeof expires == "number" && expires) {
-        const d = new Date();
-        d.setTime(d.getTime() + expires * 24 * 60 * 60 * 1000);
-        expires = options.expires = d;
+function setCloak(preset) {
+  const tabSettings = {
+    google: {
+      title: "Google",
+      favicon: "https://www.google.com/favicon.ico",
+      description: "Search the world's information, including webpages, images, videos and more."
+    },
+    gmail: {
+      title: "Gmail",
+      favicon: "https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico",
+      description: "Gmail is email that's intuitive, efficient, and useful."
+    },
+    bing: {
+      title: "Bing",
+      favicon: "https://www.bing.com/sa/simg/favicon-2x.ico",
+      description: "Bing helps you turn information into action, making it faster and easier to go from searching to doing."
+    },
+    desmos: {
+      title: "Desmos | Graphing Calculator",
+      favicon: "https://www.desmos.com/favicon.ico",
+      description: "Explore math with Desmos!"
+    },
+    games: {
+      title: "Games - Free Games",
+      favicon: "https://example.com/games-icon.png", // replace with your actual icon
+      description: "Play games for free online."
+    },
+    apps: {
+      title: "Apps - Web Apps",
+      favicon: "https://example.com/apps-icon.png", // replace with your actual icon
+      description: "Browse web apps for productivity."
     }
+  };
 
-    if (expires && expires.toUTCString) {
-        options.expires = expires.toUTCString();
+  const info = tabSettings[preset];
+
+  if (info) {
+    document.title = info.title;
+
+    // Set favicon
+    let favicon = document.querySelector("link[rel~='icon']");
+    if (!favicon) {
+      favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      document.head.appendChild(favicon);
     }
+    favicon.href = info.favicon;
 
-    value = encodeURIComponent(value);
-
-    let updatedCookie = name + "=" + value;
-
-    for (const propName in options) {
-        updatedCookie += "; " + propName;
-        const propValue = options[propName];
-        if (propValue !== true) {
-            updatedCookie += "=" + propValue;
-        }
+    // Set description
+    let metaDesc = document.querySelector("meta[name='description']");
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.name = "description";
+      document.head.appendChild(metaDesc);
     }
+    metaDesc.content = info.description;
 
-    document.cookie = updatedCookie;
+    // Save in localStorage
+    localStorage.setItem('tabCloak', preset);
+  }
 }
 
-function getCookie(name) {
-    const matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
+function resetCloak() {
+  document.title = "Reid | Verse";
+  
+  // Reset favicon
+  let favicon = document.querySelector("link[rel~='icon']");
+  if (favicon) {
+    favicon.href = "/favicon.ico"; // Default favicon
+  }
+
+  // Reset description
+  let metaDesc = document.querySelector("meta[name='description']");
+  if (metaDesc) {
+    metaDesc.content = "Welcome to Reid Verse. Play games and more!";
+  }
+
+  localStorage.removeItem('tabCloak');
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    const selectedPreset = getCookie("tabCloakPreset");
-
-    const presets = {
-        google: {
-            favicon: "/images/icons/google.ico",
-            title: "Google"
-        },
-        bing: {
-            favicon: "/images/icons/bing.ico",
-            title: "Bing"
-        },
-        gmail: {
-            favicon: "/images/icons/gmail.ico",
-            title: "Gmail"
-        },
-        desmos: {
-            favicon: "/images/icons/desmos.ico",
-            title: "Desmos | Graphing Calculator"
-        },
-        googleclassroom: {
-            favicon: "/images/icons/googleclassroom.ico",
-            title: "Home"
-        },
-        wikipedia: {
-            favicon: "/images/icons/wikipedia.ico",
-            title: "Wikipedia"
-        },
-        chrometab: {
-            favicon: "/images/icons/chromenewtab.ico",
-            title: "New Tab"
-        },
-        googledrive: {
-            favicon: "/images/icons/googledrive.ico",
-            title: "My Drive"
-        }
-    };
-
-    if (selectedPreset && presets[selectedPreset]) {
-        const preset = presets[selectedPreset];
-        document.title = preset.title;
-
-        const newFavicon = document.createElement("link");
-        newFavicon.rel = "icon";
-        newFavicon.href = preset.favicon;
-    
-        const existingFavicon = document.querySelector("link[rel='icon']");
-        if (existingFavicon) {
-            document.head.removeChild(existingFavicon);
-        }
-    
-        document.head.appendChild(newFavicon);
-    }
-});  
-
-(function() {
-    const panicKey = localStorage.getItem('panicKey');
-    const panicUrl = localStorage.getItem('panicUrl') || 'https://www.desmos.com/scientific';
-
-    if (!panicKey) {
-        return;
-    }
-
-    const keys = new Set(panicKey.split('+'));
-    const pressedKeys = new Set();
-
-    function keyHandler(event) {
-        pressedKeys.add(event.key);
-
-        for (let key of keys) {
-            if (!pressedKeys.has(key)) {
-                return;
-            }
-        }
-
-        document.body.innerHTML = '';
-        window.location.href = panicUrl;
-    }
-
-    function keyUpHandler(event) {
-        pressedKeys.delete(event.key);
-    }
-
-    document.addEventListener('keydown', keyHandler);
-    document.addEventListener('keyup', keyUpHandler);
-})();

@@ -33,12 +33,13 @@
 
         #content-side {
             padding: 30px;
-            max-width: 1000px;
+            max-width: 500px;
             width: 100%;
             margin-top: 30px;
             background: #2c2c2c;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
 
         h2 {
@@ -51,7 +52,7 @@
             margin-bottom: 25px;
         }
 
-        select, input, button {
+        select, button {
             padding: 12px;
             width: 100%;
             font-size: 1.1em;
@@ -62,7 +63,7 @@
             color: #fff;
         }
 
-        select:focus, input:focus {
+        select:focus, button:focus {
             border-color: #3a5f3a;
             outline: none;
         }
@@ -79,18 +80,6 @@
             background-color: #2c472c;
         }
 
-        a {
-            color: #3a5f3a;
-            text-decoration: none;
-            font-size: 1.2em;
-        }
-
-        .buttons-group {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
         footer {
             margin-top: 30px;
             padding: 15px;
@@ -105,28 +94,8 @@
             margin: 0;
             color: #888;
         }
-
-        /* Mobile Optimization */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 2em;
-            }
-
-            #content-side {
-                padding: 15px;
-            }
-
-            .form-section {
-                margin-bottom: 20px;
-            }
-
-            button, input, select {
-                width: 100%;
-            }
-        }
     </style>
 </head>
-<script src="/storage/js/cloak.js"></script>
 <body>
     <header>
         <h1>Reid Settings</h1>
@@ -143,38 +112,9 @@
                 <option value="wikipedia">Wikipedia</option>
                 <option value="googledrive">Google Drive</option>
             </select>
-            <div class="buttons-group">
-                <button id="saveButton">Select Cloak</button>
-                <button id="resetButton">Reset Cloak</button>
-            </div>
+            <button id="saveButton">Select Cloak</button>
+            <button id="resetButton">Reset Cloak</button>
             <p id="success">Success message here</p>
-        </div>
-
-        <h2>Panic Mode</h2>
-        <div class="form-section">
-            <input type="text" id="panicKey" placeholder="Choose a key combination" readonly>
-            <input type="url" id="panicUrl" placeholder="https://www.desmos.com/scientific">
-            <button onclick="saveSettings()">Set Panic Key</button>
-            <p id="success-panic">Success message here</p>
-        </div>
-
-        <h2>Data Management</h2>
-        <div class="form-section">
-            <div class="buttons-group">
-                <button onclick="importData()">Import Data</button>
-                <button onclick="exportData()">Export Data</button>
-                <button onclick="clearData()">Clear Data</button>
-            </div>
-        </div>
-
-        <h2>Link Behavior</h2>
-        <div class="form-section">
-            <label>
-                <input type="radio" name="openBlankSetting" value="true"> Open links in a new tab
-            </label>
-            <label>
-                <input type="radio" name="openBlankSetting" value="false"> Open links in the same tab
-            </label>
         </div>
     </div>
 
@@ -182,8 +122,30 @@
         <p>&copy; 2025 Reid Apps. All rights reserved.</p>
     </footer>
 
-    <script src="storage/js/cloak.js"></script>
-    <script src="storage/js/settings.js"></script>
-    <script src="storage/js/data.js"></script>
+    <script>
+        // JavaScript for Cloaking Tab Logic
+        document.getElementById('saveButton').addEventListener('click', function() {
+            const presetSelect = document.getElementById('presetSelect');
+            const selectedPreset = presetSelect.value;
+            const successMessage = document.getElementById('success');
+            const tabNames = {
+                google: 'Google ',
+                gmail: 'Gmail ',
+                bing: 'Bing ',
+                desmos: 'Desmos ',
+                wikipedia: 'Wikipedia ',
+                googledrive: 'Google Drive '
+            };
+
+            // Change the title of the tab
+            document.title = tabNames[selectedPreset];
+            successMessage.textContent = `Tab cloaked to ${tabNames[selectedPreset]}`;
+        });
+
+        document.getElementById('resetButton').addEventListener('click', function() {
+            document.title = 'Reid | Settings'; // Reset the tab title
+            document.getElementById('success').textContent = 'Cloak reset to default.';
+        });
+    </script>
 </body>
 </html>
