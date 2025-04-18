@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reid | Verse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        header {
+            background: #181818;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #1db954;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: #1db954;
+            transition: all 0.5s;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        nav ul li a:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        nav ul li a:hover {
+            color: #121212;
+            transform: scale(1.1);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background-image: url('hero-image.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 60px 20px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .feature {
+            background-color: #2a2a2a;
+            border-radius: 15px;
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1db954;
+        }
+
+        .feature-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 16px;
+            text-decoration: none;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #1db954;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-btn:hover {
+            background: #1db954;
+            color: #121212;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .buttons a {
+            display: inline-block;
+            margin: 15px;
+            padding: 12px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #fff;
+            background: #1db954;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .buttons a:hover {
+            background: #121212;
+            color: #1db954;
+            transform: scale(1.1);
+        }
+
+        footer {
+            margin-top: auto;
+            background: #181818;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #bbb;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .fadeIn {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+    </style>
+</head>
+
+<body class="fadeIn">
+    <header>
+        <h1>Reid Apps</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="https://github.com/TheReid45/reid-_-unblocked">Download</a></li>
+                <li><a href="https://github.com/TheReid45/reid-_-unblocked">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome to the Reid Verse</h2>
+        <p>Your gateway to retro and modern gaming, with endless possibilities.</p>
+    </section>
+
+    <section id="features" class="features">
+        <div class="feature">
+            <h3>Play Anywhere</h3>
+            <p>Access your games offline or online, wherever you are.</p>
+            <a href="games/games.html" class="feature-btn">Play Now</a>
+            <a href="games/games1.html" class="feature-btn">Update Play Now</a>
+        </div>
+
+        <div class="feature">
+            <h3>Customizable</h3>
+            <p>Personalize your experience with different themes and settings.</p>
+            <a href="Customizable.html" class="feature-btn">Learn More</a>
+        </div>
+
+        <div class="feature">
+            <h3>Apps</h3>
+            <p>Explore apps designed to make your experience smoother.</p>
+            <a href="apps/apps.html" class="feature-btn">Open</a>
+        </div>
+    </section>
+
+    <div class="buttons">
+        <a href="#">Get Started</a>
+        <a href="#">Learn More</a>
+        <a href="https://mail.google.com/mail/u/1/#inbox">Contact Us</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Reid Apps. All rights reserved.</p>
+    </footer>
+</body>
+</html>

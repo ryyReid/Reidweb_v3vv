@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reid | Verse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        header {
+            background: #181818;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #1db954;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: #1db954;
+            transition: all 0.5s;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        nav ul li a:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        nav ul li a:hover {
+            color: #121212;
+            transform: scale(1.1);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background-image: url('hero-image.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .games {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .game {
+            background-color: #2a2a2a;
+            border-radius: 15px;
+            padding: 20px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .game h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1db954;
+        }
+
+        .game-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 16px;
+            text-decoration: none;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #1db954;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .game-btn:hover {
+            background: #1db954;
+            color: #121212;
+        }
+
+        .buttons {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .buttons a {
+            display: inline-block;
+            margin: 15px;
+            padding: 12px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #fff;
+            background: #1db954;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .buttons a:hover {
+            background: #121212;
+            color: #1db954;
+            transform: scale(1.1);
+        }
+
+        footer {
+            margin-top: auto;
+            background: #181818;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #bbb;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .fadeIn {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+    </style>
+</head>
+
+<body class="fadeIn">
+    <header>
+        <h1>Reid Apps</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome to the Reid Verse</h2>
+        <p>Your gateway to retro and modern gaming, with endless possibilities.</p>
+    </section>
+
+    <section id="games" class="games">
+<section id="games" class="games">
+    <div class="game">
+        <h3>Bitlife</h3>
+        <p>It's Bitlife</p>
+        <a href="A good games\bitlife\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Space Invaders</h3>
+        <p>Defend your planet from alien invaders in this retro-inspired game.</p>
+        <a href="A good games\space\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>2048</h3>
+        <p>Join the numbers and get to the 2048 tile in this addictive puzzle game.</p>
+        <a href="A good games\2048\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Cookie Clicker</h3>
+        <p>Cookie Clicker is a javascript game by Orteil and Opti.</p>
+        <a href="A good games\cookieclicker\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Drift Boss</h3>
+        <p>A simple drift racing game where your goal is to stay on the course as long as possible.</p>
+        <a href="A good games\driftboss\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Slope</h3>
+        <p>A simple yet addictive online game where you control a ball rolling down a series of slopes.</p>
+        <a href="A good games\slope\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Dino Game</h3>
+        <p>Google Dino.</p>
+        <a href="A good games\dinogame\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Eagler1.8</h3>
+        <p>Minecraft</p>
+        <a href="A good games\eagler1.8\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Roblox</h3>
+        <p>Roblox, you know.</p>
+        <a href="A good games\Roblox\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Soldier of Ruins</h3>
+        <p>Soldier of Ruins: Temple of Apocalypse is a free first-person horror shooter set in a beautiful and atmospheric environment.</p>
+        <a href="A good games\soldier of Ruins\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Laser Spider Playground</h3>
+        <p>This is a very early prototype of the spider for Webbed. There is no goal and it may be full of bugs. Pun fully intended.</p>
+        <a href="A good games\laser-spider-playground\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Retro Ball</h3>
+        <p>Foot Bowl</p>
+        <a href="A good games\retro bowl\index.html" class="game-btn">Play Now</a>
+    </div>
+    <div class="game">
+        <h3>Drive Mad</h3>
+        <p>Mad Drive</p>
+        <a href="A good games\drive mad\index.html" class="game-btn">Play Now</a>
+    </div>
+    </section>
+
+    <div class="buttons">
+        <a href="#">Get Started</a>
+        <a href="#">Learn More</a>
+        <a href="https://mail.google.com/mail/u/1/#inbox">Contact Us</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Reid Apps. All rights reserved.</p>
+    </footer>
+</body>
+</html>
