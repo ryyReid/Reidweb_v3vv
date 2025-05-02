@@ -4,29 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reid | Verse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico">
   <style>
-.logo {
-  font-size: 48px;
-  font-weight: bold;
-  color: #1db954;
-  text-shadow: 0 0 10px #1db954, 0 0 20px #1db954, 0 0 30px #1db954;
-  animation: glowPulse 2s infinite alternate;
-  font-family: 'Orbitron', sans-serif; /* futuristic font */
-}
+    .logo, header h1 {
+      font-size: 48px;
+      font-weight: bold;
+      color: #1db954;
+      text-shadow: 0 0 10px #1db954, 0 0 20px #1db954, 0 0 30px #1db954;
+      animation: glowPulse 2s infinite alternate;
+      font-family: 'Orbitron', sans-serif;
+    }
 
-@keyframes glowPulse {
-  0% {
-    text-shadow: 0 0 10px #1db954, 0 0 20px #1db954, 0 0 30px #1db954;
-    transform: scale(1);
-  }
-  100% {
-    text-shadow: 0 0 20px #1db954, 0 0 30px #1db954, 0 0 40px #1db954;
-    transform: scale(1.05);
-  }
-}
-
-/* Add this to import Orbitron font (optional but recommended) */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+    @keyframes glowPulse {
+      0% {
+        text-shadow: 0 0 10px #1db954, 0 0 20px #1db954, 0 0 30px #1db954;
+        transform: scale(1);
+      }
+      100% {
+        text-shadow: 0 0 20px #1db954, 0 0 30px #1db954, 0 0 40px #1db954;
+        transform: scale(1.05);
+      }
+    }
 
     body {
       font-family: Arial, sans-serif;
@@ -38,9 +37,8 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      /* overflow: hidden;  <-- REMOVED THIS LINE */
     }
-    /* Green Stars Background */
+
     .stars {
       width: 100%;
       height: 100%;
@@ -48,21 +46,24 @@
       position: absolute;
       top: 0;
       left: 0;
-      overflow: hidden; /* Keep this on stars div if you want stars contained */
+      overflow: hidden;
       z-index: 0;
     }
+
     .star {
       position: absolute;
-      background: #1db954; /* Green stars */
+      background: #1db954;
       width: 2px;
       height: 2px;
       border-radius: 50%;
       animation: moveStar linear infinite, twinkle 2s infinite alternate;
     }
+
     @keyframes moveStar {
       0% { transform: translateY(0); }
       100% { transform: translateY(100vh); }
     }
+
     @keyframes twinkle {
       0% { opacity: 0.3; }
       100% { opacity: 1; }
@@ -75,18 +76,22 @@
       justify-content: space-between;
       align-items: center;
       z-index: 1;
-      position: relative; /* Changed from sticky/fixed if needed */
+      position: relative;
     }
+
     header h1 { margin: 0; font-size: 24px; }
+
     nav ul {
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
     }
+
     nav ul li {
       margin: 0 10px;
     }
+
     nav ul li a {
       color: #fff;
       text-decoration: none;
@@ -94,28 +99,31 @@
       border-radius: 5px;
       transition: background 0.3s;
     }
+
     nav ul li a:hover {
       background: #3a5f3a;
     }
+
     .hero {
       text-align: center;
       padding: 50px 20px;
-      /* Consider removing fixed background if scrolling causes issues */
-      /* background: url('hero-image.jpg') center/cover no-repeat; */
       z-index: 1;
       position: relative;
     }
+
     .hero h2 { font-size: 36px; margin: 0; }
     .hero p { font-size: 18px; margin: 10px 0; }
+
     .features {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
+      gap: 30px;
       padding: 20px;
       z-index: 1;
       position: relative;
-      flex-grow: 1; /* Allow features section to grow and push footer down */
+      flex-wrap: wrap;
     }
+
     .feature {
       background: #555;
       margin: 10px;
@@ -127,12 +135,11 @@
       border: 2px solid #3a5f3a;
       transition: background 0.3s;
     }
+
     .feature:hover {
       background: #444;
     }
-    .feature h3 { margin-top: 0; }
 
-    /* Updated Oval Buttons */
     .feature-btn, .buttons a {
       display: inline-block;
       margin-top: 10px;
@@ -142,14 +149,15 @@
       color: #fff;
       background: #1db954;
       border: 2px solid #1db954;
-      border-radius: 50px; /* oval shape */
+      border-radius: 50px;
       transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
       box-shadow: 0 0 0 transparent;
     }
+
     .feature-btn:hover, .buttons a:hover {
       background: #17a34a;
       transform: scale(1.05);
-      box-shadow: 0 0 15px #1db954; /* glow */
+      box-shadow: 0 0 15px #1db954;
     }
 
     .buttons {
@@ -160,13 +168,32 @@
     }
 
     footer {
-      /* margin-top: auto; <-- Removed this as flex-grow on .features handles it */
       background: #222;
       text-align: center;
       padding: 10px 20px;
       z-index: 1;
       position: relative;
     }
+
+    /* Centering the main feature */
+    .feature-main {
+      text-align: center;
+      background: #555;
+      margin: 10px auto;
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1 1 600px;
+      max-width: 600px;
+    }
+
+    /* Flex layout for the other features */
+    .feature-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
   </style>
 </head>
 
@@ -174,28 +201,32 @@
   <div class="stars"></div>
 
   <header>
-    <h1>Reid Apps</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="https://github.com/TheReid45/reid-_-unblocked">Download</a></li>
-        <li><a href="https://github.com/TheReid45/reid-_-unblocked">About</a></li>
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="#games">🎮 Games</a></li>
+        <li><a href="#download">⬇️ Download</a></li>
+        <li><a href="#about">ℹ️ About</a></li>
       </ul>
     </nav>
   </header>
 
   <section class="hero">
-    <h2>Welcome to the Reid Verse</h2>
+    <h2 class="logo">Reid | Verse</h2>
     <p>Your gateway to a world of retro and modern gaming.</p>
   </section>
 
   <section id="features" class="features">
-    <div class="feature">
-      <h3>Play Anywhere</h3>
+    <!-- Main Feature (Play Anywhere centered) -->
+    <div class="feature feature-main">
+      <h3>🎮 Play Anywhere</h3>
       <p>Access your favorite games offline or online with ease.</p>
       <a href="games/games.html" class="feature-btn">|| Play Now ||</a>
     </div>
+  </section>
+
+  <section class="feature-grid">
+    <!-- Other Features to the side -->
     <div class="feature">
       <h3>Customizable</h3>
       <p>Choose your themes and personalize your experience. (Coming soon)</p>
@@ -209,23 +240,14 @@
     <div class="feature">
       <h3>Give me ideas</h3>
       <p>Google forms</p>
-      <a href="https://forms.gle/WCprPgSHD1Dp4dYN8" class="feature-btn">|| Try Now ||</a>
+      <a href="https://forms.gle/WCprPgSHD1Dp4dYN8" class="feature-btn" target="_blank" rel="noopener noreferrer">|| Try Now ||</a>
     </div>
-    <div class="feature">
-        <h3></h3>
-        <p></p>
-        <a </a>
-    </div>
-    <div class="feature">
-        <h3></h3>
-        <p>.</p>
-        <a </a>
-    </div>
-    </section>
+  </section>
+
   <div class="buttons">
     <a href="#">Get Started</a>
     <a href="#">Learn More</a>
-    <a href="https://mail.google.com/mail/u/1/#inbox">Contact Me</a>
+    <a href="https://mail.google.com/mail/u/1/#inbox" target="_blank" rel="noopener noreferrer">Contact Me</a>
   </div>
 
   <footer>
@@ -233,29 +255,22 @@
   </footer>
 
   <script>
-    // Create green stars
     const starsContainer = document.querySelector('.stars');
-    const numStars = 100; // Number of stars
+    const numStars = 100;
     for (let i = 0; i < numStars; i++) {
       const star = document.createElement('div');
       star.classList.add('star');
-      // Adjust position generation slightly to ensure they appear within viewport initially
       star.style.top = Math.random() * 100 + 'vh';
       star.style.left = Math.random() * 100 + 'vw';
-      // Randomize animation duration and delay for a more natural effect
-      star.style.animationDuration = (Math.random() * 5 + 5) + 's, ' + (Math.random() * 1 + 1.5) + 's'; // duration for moveStar, twinkle
-      star.style.animationDelay = Math.random() * 5 + 's, ' + Math.random() * 2 + 's'; // delay for moveStar, twinkle
+      star.style.animationDuration = (Math.random() * 5 + 5) + 's, ' + (Math.random() * 1 + 1.5) + 's';
+      star.style.animationDelay = Math.random() * 5 + 's, ' + Math.random() * 2 + 's';
       starsContainer.appendChild(star);
     }
 
-    // Note: The auto cloak script might interfere or have unintended effects
-    // depending on its implementation in cloak.js. Keeping it as is.
     window.addEventListener('load', () => {
       const saved = localStorage.getItem('tabCloak');
       if (saved) {
-        // Assuming setCloak exists and works as intended
-        // setCloak(saved);
-        console.log('Tab cloak setting loaded:', saved); // Added for debugging
+        console.log('Tab cloak setting loaded:', saved);
       }
     });
   </script>
