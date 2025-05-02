@@ -1,336 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Games | Reid Apps</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #1a1a1a;
-            color: #fff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reid | Verse</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
-        header {
-            background: rgba(0, 0, 0, 0.7);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #1a1a1a, #333);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            font-weight: bold;
-        }
+    .stars {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
+    .star {
+      position: absolute;
+      background: #1db954;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      animation: moveStar linear infinite, twinkle 2s infinite alternate;
+    }
 
-        nav ul li {
-            margin: 0 15px;
-        }
+    @keyframes moveStar {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); }
+    }
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
+    @keyframes twinkle {
+      0% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
 
-        nav ul li a:hover {
-            background: #3a5f3a;
-        }
+    .logo, header h1 {
+      font-size: 48px;
+      font-weight: bold;
+      color: #1db954;
+      text-shadow: 0 0 10px #1db954, 0 0 20px #1db954, 0 0 30px #1db954;
+      animation: glowPulse 2s infinite alternate;
+      font-family: 'Orbitron', sans-serif;
+    }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: url('hero-image.jpg') center/cover no-repeat;
-            color: #fff;
-            position: relative;
-        }
+    @keyframes glowPulse {
+      0% {
+        text-shadow: 0 0 10px #1db954, 0 0 20px #1db954, 0 0 30px #1db954;
+        transform: scale(1);
+      }
+      100% {
+        text-shadow: 0 0 20px #1db954, 0 0 30px #1db954, 0 0 40px #1db954;
+        transform: scale(1.05);
+      }
+    }
 
-        .hero h2 {
-            font-size: 48px;
-            margin: 0;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-        }
+    header {
+      background: #444;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1;
+      position: relative;
+    }
 
-        .hero p {
-            font-size: 22px;
-            margin: 10px 0;
-            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6);
-        }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
 
-        /* Game Cards Section */
-        .games {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            animation: fadeIn 1s ease-out;
-        }
+    nav ul li {
+      margin: 0 10px;
+    }
 
-        .game {
-            background: #2b2b2b;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
 
-        .game:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-        }
+    nav ul li a:hover {
+      background: #3a5f3a;
+    }
 
-        .game img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      z-index: 1;
+      position: relative;
+    }
 
-        .game h3 {
-            margin-top: 10px;
-            font-size: 22px;
-        }
+    .hero h2 {
+      font-size: 36px;
+      margin: 0;
+    }
 
-        .game-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: #3a5f3a;
-            color: #fff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
+    .hero p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
 
-        .game-btn:hover {
-            background: #2c472c;
-        }
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 20px;
+      z-index: 1;
+      position: relative;
+      flex-grow: 1;
+    }
 
-        /* Scroll to Top Button */
-        .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #3a5f3a;
-            padding: 10px 15px;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 18px;
-            display: none;
-            transition: background 0.3s;
-        }
+    .feature {
+      background: #555;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1 1 300px;
+      max-width: 300px;
+      text-align: center;
+      border: 2px solid #1db954;
+      transition: background 0.3s;
+    }
 
-        .scroll-top:hover {
-            background: #2c472c;
-        }
+    .feature:hover {
+      background: #444;
+    }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 10px;
-            background: #222;
-            position: relative;
-        }
+    .feature h3 {
+      margin-top: 0;
+    }
 
-        footer p {
-            margin: 0;
-            font-size: 14px;
-        }
+    .feature-btn, .buttons a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 30px;
+      font-size: 16px;
+      text-decoration: none;
+      color: #fff;
+      background: #1db954;
+      border: 2px solid #1db954;
+      border-radius: 50px;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 0 0 transparent;
+    }
 
-        /* Animations */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-    </style>
+    .feature-btn:hover, .buttons a:hover {
+      background: #17a34a;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #1db954;
+    }
+
+    .buttons {
+      text-align: center;
+      margin: 20px 0;
+      z-index: 1;
+      position: relative;
+    }
+
+    footer {
+      background: #222;
+      text-align: center;
+      padding: 10px 20px;
+      z-index: 1;
+      position: relative;
+    }
+  </style>
 </head>
-<script src="/storage/js/cloak.js"></script>
 <body>
+  <div class="stars"></div>
 
-    <!-- Header -->
-    <header>
-        <h1>HTML Games</h1>
-        <nav>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="#games">Games</a></li>
-                <li><a href="#download">Download</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+  <div class="logo">Reid | Verse</div>
+  <nav>
+    <ul>
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="#games">🎮 Games</a></li>
+      <li><a href="#download">⬇️ Download</a></li>
+      <li><a href="#about">ℹ️ About</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h2>Welcome to HTML Games</h2>
-        <p>Your hub for fun, interactive, and lightweight HTML5 games.</p>
-    </section>
 
-    <!-- Games Section -->
-    <section id="games" class="games">
-        <!-- Game 1: Bitlife -->
-        <div class="game">
-            <img src="path/to/bitlife-image.jpg" alt="Bitlife Game">
-            <h3>Bitlife</h3>
-            <p>Live a virtual life in this fun simulation game.</p>
-            <a href="A good games/bitlife/index.html" class="game-btn">Play Now</a>
-        </div>
+  <section class="hero">
+    <h2>Welcome to HTML Games</h2>
+    <p>Your hub for fun, interactive, and lightweight HTML5 games.</p>
+  </section>
 
-        <!-- Game 2: Space Invaders -->
-        <div class="game">
-            <img src="path/to/space-invaders-image.jpg" alt="Space Invaders Game">
-            <h3>Space Invaders</h3>
-            <p>Defend your planet from alien invaders in this retro-inspired game.</p>
-            <a href="A good games/space/index.html" class="game-btn">Play Now</a>
-        </div>
+  <section id="games" class="features">
+    <div class="feature"><h3>Bitlife</h3><p>it's bitlife</p><a href="A good games/bitlife/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Space Invaders</h3><p>Defend your planet from alien invaders in this retro-inspired game.</p><a href="A good games/space/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>2048</h3><p>Join the numbers and get to the 2048 tile in this addictive puzzle game.</p><a href="A good games/2048/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Cookie Clicker</h3><p>Cookie Clicker is a javascript game by Orteil and Opti.</p><a href="A good games/cookieclicker/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Drift Boss</h3><p>Stay on the course as long as possible.</p><a href="A good games/driftboss/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Slope</h3><p>Control a ball rolling down a series of slopes.</p><a href="A good games/slope/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Dino Game</h3><p>Google Dino offline clone.</p><a href="A good games/dinogame/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Eagler1.8</h3><p>Minecraft 1.8 in browser.</p><a href="A good games/eagler1.8/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Roblox</h3><p>Roblox in browser.</p><a href="A good games/Roblox/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Soldier of Ruins</h3><p>First-person horror shooter set in ruins.</p><a href="A good games/soldier of Ruins/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Laser Spider</h3><p>Prototype spider physics test.</p><a href="A good games/laser-spider-playground/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Retro Bowl</h3><p>Football arcade game.</p><a href="A good games/retro bowl/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Drive Mad</h3><p>Mad car physics game.</p><a href="A good games/drive mad/index.html" class="feature-btn">Play Now</a></div>
+    <div class="feature"><h3>Scale the Depths</h3><p>Fishing roguelike adventure.</p><a href="A good games/Scale the Depths/index.html" class="feature-btn">Play Now</a></div>
+  </section>
 
-        <!-- Game 3: 2048 -->
-        <div class="game">
-            <img src="path/to/2048-image.jpg" alt="2048 Game">
-            <h3>2048</h3>
-            <p>Join the numbers and get to the 2048 tile in this addictive puzzle game.</p>
-            <a href="A good games/2048/index.html" class="game-btn">Play Now</a>
-        </div>
+  <div class="buttons">
+    <a href="#">Get Started</a>
+    <a href="#">Learn More</a>
+    <a href="#">Contact Us</a>
+  </div>
 
-        <!-- Game 4: Cookie Clicker -->
-        <div class="game">
-            <img src="path/to/cookieclicker-image.jpg" alt="Cookie Clicker Game">
-            <h3>Cookie Clicker</h3>
-            <p>Cookie Clicker is a javascript game by Orteil and Opti.</p>
-            <a href="A good games/cookieclicker/index.html" class="game-btn">Play Now</a>
-        </div>
+  <footer>
+    <p>&copy; 2025 Reid Apps. All rights reserved.</p>
+  </footer>
 
-        <!-- Game 5: Driftboss -->
-        <div class="game">
-            <img src="path/to/driftboss-image.jpg" alt="Driftboss Game">
-            <h3>Driftboss</h3>
-            <p>A simple drift racing game where your goal is to stay on the course as long as possible.</p>
-            <a href="A good games/driftboss/index.html" class="game-btn">Play Now</a>
-        </div>
-
-        <!-- Game 6: Slope -->
-        <div class="game">
-            <img src="path/to/slope-image.jpg" alt="Slope Game">
-            <h3>Slope</h3>
-            <p>A simple yet addictive online game where you control a ball rolling down a series of slopes.</p>
-            <a href="A good games/slope/index.html" class="game-btn">Play Now</a>
-        </div>
-
-        <!-- Game 7: Dino Game -->
-        <div class="game">
-            <img src="path/to/dino-image.jpg" alt="Dino Game">
-            <h3>Dino Game</h3>
-            <p>Google Dino. When there's no connection, it's time to play!</p>
-            <a href="A good games/dinogame/index.html" class="game-btn">Play Now</a>
-        </div>
-
-        <!-- Game 8: Eagler1.8 -->
-        <div class="game">
-            <img src="path/to/eagler1-8-image.jpg" alt="Eagler1.8 Minecraft">
-            <h3>Eagler1.8</h3>
-            <p>Minecraft on the web, no downloads needed.</p>
-            <a href="A good games/eagler1.8/index.html" class="game-btn">Play Now</a>
-        </div>
-
-        <!-- Game 9: Roblox -->
-        <div class="game">
-            <img src="path/to/roblox-image.jpg" alt="Roblox Game">
-            <h3>Roblox</h3>
-            <p>Roblox you know. Play games with friends!</p>
-            <a href="A good games/Roblox/index.html" class="game-btn">Play Now</a>
-        </div>
-
-        <!-- Game 10: Soldier of Ruins -->
-        <div class="game">
-            <img src="path/to/soldier-of-ruins-image.jpg" alt="Soldier of Ruins Game">
-            <h3>Soldier of Ruins</h3>
-            <p>Temple of Apocalypse: A free first-person horror shooter set in a beautiful environment.</p>
-            <a href="A good games/soldierofruins/index.html" class="game-btn">Play Now</a>
-        </div>
-
-        <!-- Game 11: Flappy Bird Clone -->
-        <div class="game">
-            <img src="path/to/flappybird-image.jpg" alt="Flappy Bird Clone">
-            <h3>Flappy Bird</h3>
-            <p>Can you make it through the pipes without crashing?</p>
-            <a href="A good games/flappybird/index.html" class="game-btn">Play Now</a>
-        </div>
-
-        <!-- Game 12: Tetris -->
-        <div class="game">
-            <img src="path/to/tetris-image.jpg" alt="Tetris Game">
-            <h3>Tetris</h3>
-            <p>The classic block-stacking puzzle game.</p>
-            <a href="A good games/tetris/index.html" class="game-btn">Play Now</a>
-        </div>
-
-        <!-- Game 13: Pacman -->
-        <div class="game">
-            <img src="path/to/pacman-image.jpg" alt="Pacman Game">
-            <h3>Pacman</h3>
-            <p>Eat all the dots while avoiding the ghosts!</p>
-            <a href="A good games/pacman/index.html" class="game-btn">Play Now</a>
-        </div>
-
-        <!-- Game 14: Snake -->
-        <div class="game">
-            <img src="path/to/snake-image.jpg" alt="Snake Game">
-            <h3>Snake</h3>
-            <p>The classic snake game where you eat to grow longer.</p>
-            <a href="A good games/snake/index.html" class="game-btn">Play Now</a>
-        </div>
-        </div>
-                <div class="game">
-            <img src="path/to/Scale the Depths-image.jpg" alt=">Scale the Depths">
-            <h3>Scale the Depths</h3>
-            <p>fishing</p>
-            <a href="A good games\Scale the Depths\index.html" class="game-btn">Play Now</a>
-        </div>
-
-    </section>
-
-    <!-- Scroll to Top Button -->
-    <a href="#" class="scroll-top" id="scrollTopBtn">↑</a>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Reid Apps. All rights reserved.</p>
-    </footer>
-
-    <!-- Scripts -->
-    <script>
-        // Scroll to Top Button Functionality
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        window.addEventListener('scroll', () => {
-            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                scrollTopBtn.style.display = 'block';
-            } else {
-                scrollTopBtn.style.display = 'none';
-            }
-        });
-
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
-
+  <script>
+    const starsContainer = document.querySelector('.stars');
+    const numStars = 100;
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (Math.random() * 5 + 5) + 's, ' + (Math.random() * 1 + 1.5) + 's';
+      star.style.animationDelay = Math.random() * 5 + 's, ' + Math.random() * 2 + 's';
+      starsContainer.appendChild(star);
+    }
+  </script>
+  <script src="/storage/js/cloak.js"></script>
+  <script src="/storage/js/data.js"></script>
+  <script src="/storage/js/settings.js"></script>
 </body>
 </html>

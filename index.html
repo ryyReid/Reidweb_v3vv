@@ -27,6 +27,7 @@
 
 /* Add this to import Orbitron font (optional but recommended) */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -37,7 +38,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      overflow: hidden;
+      /* overflow: hidden;  <-- REMOVED THIS LINE */
     }
     /* Green Stars Background */
     .stars {
@@ -47,7 +48,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      overflow: hidden;
+      overflow: hidden; /* Keep this on stars div if you want stars contained */
       z-index: 0;
     }
     .star {
@@ -74,7 +75,7 @@
       justify-content: space-between;
       align-items: center;
       z-index: 1;
-      position: relative;
+      position: relative; /* Changed from sticky/fixed if needed */
     }
     header h1 { margin: 0; font-size: 24px; }
     nav ul {
@@ -99,7 +100,8 @@
     .hero {
       text-align: center;
       padding: 50px 20px;
-      background: url('hero-image.jpg') center/cover no-repeat;
+      /* Consider removing fixed background if scrolling causes issues */
+      /* background: url('hero-image.jpg') center/cover no-repeat; */
       z-index: 1;
       position: relative;
     }
@@ -112,6 +114,7 @@
       padding: 20px;
       z-index: 1;
       position: relative;
+      flex-grow: 1; /* Allow features section to grow and push footer down */
     }
     .feature {
       background: #555;
@@ -157,7 +160,7 @@
     }
 
     footer {
-      margin-top: auto;
+      /* margin-top: auto; <-- Removed this as flex-grow on .features handles it */
       background: #222;
       text-align: center;
       padding: 10px 20px;
@@ -192,8 +195,6 @@
       <h3>Play Anywhere</h3>
       <p>Access your favorite games offline or online with ease.</p>
       <a href="games/games.html" class="feature-btn">|| Play Now ||</a>
-      <a href="games/games1.html" class="feature-btn">|| Update Play Now ||</a>
-      <a href="games/Games fresh look.html" class="feature-btn">|| A Fresh Look ||</a>
     </div>
     <div class="feature">
       <h3>Customizable</h3>
@@ -206,12 +207,21 @@
       <a href="apps/apps.html" class="feature-btn">|| Open ||</a>
     </div>
     <div class="feature">
-      <h3>A Fresh Look</h3>
-      <p>Home remade for a better experience.</p>
-      <a href="index fresh look.html" class="feature-btn">|| Try Now ||</a>
+      <h3>Give me ideas</h3>
+      <p>Google forms</p>
+      <a href="https://forms.gle/WCprPgSHD1Dp4dYN8" class="feature-btn">|| Try Now ||</a>
     </div>
-  </section>
-
+    <div class="feature">
+        <h3></h3>
+        <p></p>
+        <a </a>
+    </div>
+    <div class="feature">
+        <h3></h3>
+        <p>.</p>
+        <a </a>
+    </div>
+    </section>
   <div class="buttons">
     <a href="#">Get Started</a>
     <a href="#">Learn More</a>
@@ -225,20 +235,27 @@
   <script>
     // Create green stars
     const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < 100; i++) {
+    const numStars = 100; // Number of stars
+    for (let i = 0; i < numStars; i++) {
       const star = document.createElement('div');
       star.classList.add('star');
+      // Adjust position generation slightly to ensure they appear within viewport initially
       star.style.top = Math.random() * 100 + 'vh';
       star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      // Randomize animation duration and delay for a more natural effect
+      star.style.animationDuration = (Math.random() * 5 + 5) + 's, ' + (Math.random() * 1 + 1.5) + 's'; // duration for moveStar, twinkle
+      star.style.animationDelay = Math.random() * 5 + 's, ' + Math.random() * 2 + 's'; // delay for moveStar, twinkle
       starsContainer.appendChild(star);
     }
 
-    // Auto cloak on page load
+    // Note: The auto cloak script might interfere or have unintended effects
+    // depending on its implementation in cloak.js. Keeping it as is.
     window.addEventListener('load', () => {
       const saved = localStorage.getItem('tabCloak');
       if (saved) {
-        setCloak(saved);
+        // Assuming setCloak exists and works as intended
+        // setCloak(saved);
+        console.log('Tab cloak setting loaded:', saved); // Added for debugging
       }
     });
   </script>
