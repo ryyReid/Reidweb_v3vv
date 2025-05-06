@@ -1,4 +1,6 @@
-# Reid Apps - Unblocked Games   
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ryyReid/Reidweb_v3vv,https:/&type=Date)](https://www.star-history.com/#ryyReid/Reidweb_v3vv&https:/&Date)# Reid Apps - Unblocked Games   
 
 Welcome to **Reid Apps**, a platform that offers a variety of retro and modern games, all easily accessible and unblocked! Whether you're looking to kill some time or enjoy some classic games, Reid Apps provides a fun and seamless experience.
 
