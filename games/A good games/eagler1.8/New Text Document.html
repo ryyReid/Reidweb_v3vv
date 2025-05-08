@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000">
+  <title>Eaglercraft 1.8</title>
+  <link rel="shortcut icon" href="../../images/ico.ico" type="image/x-icon">
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7FN7LEVWXD');
+  </script>
+
+  <script src="../../storage/js/cloak.js"></script>
+  <script src="classes.js" defer></script>
+  <script defer>
+    "use strict";
+    window.addEventListener("load", () => {
+      if(location.protocol === "file:") {
+        alert("Please run this file through a local HTTP server, not directly.");
+        return;
+      }
+
+      const relayId = Math.floor(Math.random() * 3);
+      window.eaglercraftXOpts = {
+        demoMode: false,
+        container: "game_frame",
+        assetsURI: "assets.epk",
+        localesURI: "lang/",
+        worldsDB: "worlds",
+        servers: [
+          { addr: "wss://ethereal.mov", name: "§b§lethereal§r§8§o", hideAddress: true },
+          { addr: "wss://mc.arch.lol", name: "§a§larch.lol§r§8§o", hideAddress: true },
+          { addr: "wss://vanillamc.me", name: "§5§lvanilla mc§r§8§o", hideAddress: true }
+        ],
+        relays: [
+          { addr: "wss://relay.deev.is/", primary: relayId === 0 },
+          { addr: "wss://relay.lax1dude.net/", primary: relayId === 1 },
+          { addr: "wss://relay.shhnowisnottheti.me/", primary: relayId === 2 }
+        ]
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const s = params.get("server");
+      if (s) window.eaglercraftXOpts.joinServer = s;
+
+      if (typeof main === "function") {
+        main();
+      } else {
+        console.error("main() function not found. Check your scripts.");
+      }
+    });
+  </script>
+</head>
+<body style="margin:0;width:100vw;height:100vh;overflow:hidden;">
+  <div id="game_frame" style="width:100%;height:100%;"></div>
+  <script src="/storage/js/data.js"></script>
+  <script src="/storage/js/settings.js"></script>
+</body>
+</html>
