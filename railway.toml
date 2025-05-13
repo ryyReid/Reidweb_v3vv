@@ -1,0 +1,9 @@
+[build]
+builder = "NIXPACKS"
+nixpacksPlan = "static"
+
+[static]
+public_dir = "."
+
+[deploy]
+start_command = ""
