@@ -1,6 +1,12 @@
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ryyReid/Reidweb_v3vv,https:/&type=Date)](https://www.star-history.com/#ryyReid/Reidweb_v3vv&https:/&Date)# Reid Apps - Unblocked Games   
+<a href="https://www.star-history.com/#ryyReid/Reidweb_v3vv&https:/&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ryyReid/Reidweb_v3vv,https:/&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ryyReid/Reidweb_v3vv,https:/&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ryyReid/Reidweb_v3vv,https:/&type=Date" />
+ </picture>
+</a>
 
 Welcome to **Reid Apps**, a platform that offers a variety of retro and modern games, all easily accessible and unblocked! Whether you're looking to kill some time or enjoy some classic games, Reid Apps provides a fun and seamless experience.
 
