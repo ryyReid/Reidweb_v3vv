@@ -38,7 +38,7 @@ Some of the games you can enjoy include:
 
 A big thank you to:
 
-- **Seraph**: For contributing to the development of this project.  
+- **Seraph**:  For their open-source contributions and inspiration for the unblocked games platform.  
   [Seraph GitHub](https://github.com/a456pur/seraph)
 
 - **ObsidiansUnblockedRevamped**: For their open-source contributions and inspiration for the unblocked games platform.  
