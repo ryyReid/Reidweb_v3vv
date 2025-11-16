@@ -15,67 +15,39 @@ function setCloak(preset) {
     bing: {
       title: "Bing",
       favicon: "https://www.bing.com/sa/simg/favicon-2x.ico",
-      description: "Bing helps you turn information into action, making it faster and easier to go from searching to doing."
+      description: "Bing helps you turn information into action."
     },
     desmos: {
       title: "Desmos | Graphing Calculator",
       favicon: "https://www.desmos.com/favicon.ico",
       description: "Explore math with Desmos!"
-    },
-    games: {
-      title: "Games - Free Games",
-      favicon: "https://example.com/games-icon.png", // replace with your actual icon
-      description: "Play games for free online."
-    },
-    apps: {
-      title: "Apps - Web Apps",
-      favicon: "https://example.com/apps-icon.png", // replace with your actual icon
-      description: "Browse web apps for productivity."
     }
   };
 
   const info = tabSettings[preset];
+  if (!info) return;
 
-  if (info) {
-    document.title = info.title;
+  // Title
+  document.title = info.title;
 
-    // Set favicon
-    let favicon = document.querySelector("link[rel~='icon']");
-    if (!favicon) {
-      favicon = document.createElement('link');
-      favicon.rel = 'icon';
-      document.head.appendChild(favicon);
-    }
-    favicon.href = info.favicon;
+  // Favicon
+  let favicon = 
+      document.querySelector("link[rel='icon']") ||
+      document.querySelector("link[rel='shortcut icon']");
 
-    // Set description
-    let metaDesc = document.querySelector("meta[name='description']");
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.name = "description";
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.content = info.description;
-
-    // Save in localStorage
-    localStorage.setItem('tabCloak', preset);
+  if (!favicon) {
+    favicon = document.createElement("link");
+    favicon.rel = "icon";
+    document.head.appendChild(favicon);
   }
-}
+  favicon.href = info.favicon;
 
-function resetCloak() {
-  document.title = "Reid | Verse";
-  
-  // Reset favicon
-  let favicon = document.querySelector("link[rel~='icon']");
-  if (favicon) {
-    favicon.href = "/favicon.ico"; // Default favicon
-  }
-
-  // Reset description
+  // Description
   let metaDesc = document.querySelector("meta[name='description']");
-  if (metaDesc) {
-    metaDesc.content = "Welcome to Reid Verse. Play games and more!";
+  if (!metaDesc) {
+    metaDesc = document.createElement("meta");
+    metaDesc.name = "description";
+    document.head.appendChild(metaDesc);
   }
-
-  localStorage.removeItem('tabCloak');
+  metaDesc.content = info.description;
 }

@@ -6,63 +6,41 @@
   <title>Reid | Verse</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.ico">
+
   <style>
-    .logo, header h1 {
-      font-size: 48px;
-      font-weight: bold;
-      color: #1db954;
-      text-shadow: 0 0 10px #1db954, 0 0 20px #1db954, 0 0 30px #1db954;
-      animation: glowPulse 2s infinite alternate;
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    @keyframes glowPulse {
-      0% {
-        text-shadow: 0 0 10px #1db954, 0 0 20px #1db954, 0 0 30px #1db954;
-        transform: scale(1);
-      }
-      100% {
-        text-shadow: 0 0 20px #1db954, 0 0 30px #1db954, 0 0 40px #1db954;
-        transform: scale(1.05);
-      }
-    }
-
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #1a1a1a, #333);
       color: #fff;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow-x: hidden;
     }
 
+    /* STARFIELD */
     .stars {
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: fixed;
+      inset: 0;
       overflow: hidden;
+      pointer-events: none;
       z-index: 0;
-      pointer-events: none; /* ✅ fix to make buttons clickable */
     }
 
     .star {
       position: absolute;
-      background: #1db954;
       width: 2px;
       height: 2px;
+      background: #1db954;
       border-radius: 50%;
-      animation: moveStar linear infinite, twinkle 2s infinite alternate;
+      animation: fall linear infinite, twinkle 2s infinite alternate;
     }
 
-    @keyframes moveStar {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(100vh); }
+    @keyframes fall {
+      from { transform: translateY(-10vh); }
+      to { transform: translateY(110vh); }
     }
 
     @keyframes twinkle {
@@ -70,136 +48,118 @@
       100% { opacity: 1; }
     }
 
+    /* HEADER */
     header {
       background: #444;
       padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1;
       position: relative;
+      z-index: 2;
     }
-
-    header h1 { margin: 0; font-size: 24px; }
 
     nav ul {
-      list-style: none;
+      display: flex;
+      gap: 15px;
       margin: 0;
       padding: 0;
-      display: flex;
+      list-style: none;
     }
 
-    nav ul li {
-      margin: 0 10px;
-    }
-
-    nav ul li a {
+    nav a {
       color: #fff;
       text-decoration: none;
-      padding: 5px 10px;
+      padding: 6px 12px;
       border-radius: 5px;
       transition: background 0.3s;
+      font-size: 16px;
     }
 
-    nav ul li a:hover {
+    nav a:hover {
       background: #3a5f3a;
     }
 
-    .hero {
-      text-align: center;
-      padding: 50px 20px;
-      z-index: 1;
-      position: relative;
+    /* LOGO */
+    .logo {
+      font-size: 48px;
+      font-family: 'Orbitron', sans-serif;
+      color: #1db954;
+      text-shadow: 0 0 10px #1db954, 0 0 20px #1db954;
+      animation: glow 2s infinite alternate;
+      margin: 0;
     }
 
-    .hero h2 { font-size: 36px; margin: 0; }
-    .hero p { font-size: 18px; margin: 10px 0; }
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #1db954; transform: scale(1); }
+      100% { text-shadow: 0 0 30px #1db954; transform: scale(1.05); }
+    }
 
-    .features {
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* FEATURE CARDS */
+    .features, .feature-grid {
       display: flex;
       justify-content: center;
-      gap: 30px;
-      padding: 20px;
-      z-index: 1;
-      position: relative;
       flex-wrap: wrap;
+      gap: 25px;
+      padding: 20px;
+      z-index: 2;
+      position: relative;
     }
 
     .feature {
       background: #555;
-      margin: 10px;
       padding: 20px;
       border-radius: 10px;
-      flex: 1 1 300px;
-      max-width: 300px;
-      text-align: center;
+      max-width: 350px;
       border: 2px solid #3a5f3a;
+      text-align: center;
       transition: background 0.3s;
     }
 
-    .feature:hover {
-      background: #444;
-    }
+    .feature:hover { background: #444; }
 
-    .feature-btn, .buttons a {
+    .feature-btn {
       display: inline-block;
       margin-top: 10px;
       padding: 12px 30px;
       font-size: 16px;
       text-decoration: none;
-      color: #fff;
       background: #1db954;
-      border: 2px solid #1db954;
+      color: #fff;
       border-radius: 50px;
-      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-      box-shadow: 0 0 0 transparent;
+      border: 2px solid #1db954;
+      transition: transform 0.2s, box-shadow 0.3s;
     }
 
-    .feature-btn:hover, .buttons a:hover {
-      background: #17a34a;
+    .feature-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 0 15px #1db954;
     }
 
-    .buttons {
-      text-align: center;
-      margin: 20px 0;
-      z-index: 1;
-      position: relative;
-    }
-
+    /* FOOTER */
     footer {
       background: #222;
-      text-align: center;
       padding: 10px 20px;
-      z-index: 1;
-      position: relative;
-    }
-
-    /* Centering the main feature */
-    .feature-main {
       text-align: center;
-      background: #555;
-      margin: 10px auto;
-      padding: 20px;
-      border-radius: 10px;
-      flex: 1 1 600px;
-      max-width: 600px;
+      margin-top: auto;
+      z-index: 2;
     }
 
-    /* Flex layout for the other features */
-    .feature-grid {
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      margin-top: 30px;
-      padding: 0 30px;
+    /* MOBILE */
+    @media(max-width: 600px) {
+      .logo { font-size: 32px; }
+      nav ul { flex-wrap: wrap; }
     }
-
   </style>
 </head>
 
 <body>
+
   <div class="stars"></div>
 
   <header>
@@ -207,77 +167,68 @@
       <ul>
         <li><a href="index.html">🏠 Home</a></li>
         <li><a href="#games">🎮 Games</a></li>
-        <li><a href="#download"⬇️ Download</a></li>
+        <li><a href="#download">⬇️ Download</a></li>
         <li><a href="#about">ℹ️ About</a></li>
       </ul>
     </nav>
   </header>
 
   <section class="hero">
-    <h2 class="logo">Reid | Verse</h2>
+    <h1 class="logo">Reid | Verse</h1>
     <p>Your gateway to a world of modern gaming.</p>
   </section>
 
-  <section id="features" class="features">
-    <!-- Main Feature (Play Anywhere centered) -->
-    <div class="feature feature-main">
+  <section class="features">
+    <div class="feature">
       <h3>🎮 Play Anywhere</h3>
       <p>Access your favorite games offline or online with ease.</p>
-      <a href="games/games.html" class="feature-btn">|| Play Now ||</a>
+      <a href="games/games.html" class="feature-btn">Play Now</a>
     </div>
   </section>
 
   <section class="feature-grid">
-    <!-- Other Features to the side -->
     <div class="feature">
       <h3>Customizable</h3>
-      <p>Choose your themes and personalize your experience. (Coming soon)</p>
-      <a href="Customizable.html" class="feature-btn">|| Learn More ||</a>
+      <p>Choose themes and personalize your experience. (Coming soon)</p>
+      <a href="Customizable.html" class="feature-btn">Learn More</a>
     </div>
+
     <div class="feature">
       <h3>Apps</h3>
-      <p>Apps designed for seamless integration and user convenience.</p>
-      <a href="apps/apps.html" class="feature-btn">|| Open ||</a>
+      <p>Apps designed for seamless integration and convenience.</p>
+      <a href="apps/apps.html" class="feature-btn">Open</a>
     </div>
+
     <div class="feature">
-      <h3>music player</h3>
-      <p>html made use a local folder or github repo to listen to music</p>
-      <a href="https://ryyreid.github.io/html_music_player/" class="feature-btn">|| Open ||</a>
+      <h3>Music Player</h3>
+      <p>Play music from a repo or local folder.</p>
+      <a href="https://ryyreid.github.io/html_music_player/" class="feature-btn">Open</a>
     </div>
   </section>
-
-  <div class="buttons">
-    <a href="#">Get Started</a>
-    <a href="#">Learn More</a>
-    <a href="https://mail.google.com/mail/u/1/#inbox" target="_blank" rel="noopener noreferrer">Contact Me</a>
-  </div>
 
   <footer>
     <p>&copy; 2025 Reid Apps. All rights reserved.</p>
   </footer>
 
   <script>
-    const starsContainer = document.querySelector('.stars');
-    const numStars = 100;
-    for (let i = 0; i < numStars; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (Math.random() * 5 + 5) + 's, ' + (Math.random() * 1 + 1.5) + 's';
-      star.style.animationDelay = Math.random() * 5 + 's, ' + Math.random() * 2 + 's';
-      starsContainer.appendChild(star);
-    }
+    /* STARFIELD GENERATION */
+    const container = document.querySelector(".stars");
+    const count = 70;
 
-    window.addEventListener('load', () => {
-      const saved = localStorage.getItem('tabCloak');
-      if (saved) {
-        console.log('Tab cloak setting loaded:', saved);
-      }
-    });
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement("div");
+      s.className = "star";
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.top = Math.random() * 100 + "vh";
+      s.style.animationDuration = (Math.random() * 6 + 4) + "s";
+      container.appendChild(s);
+    }
   </script>
-  <script src="/storage/js/cloak.js"></script>
-  <script src="/storage/js/settings.js"></script>
-  <script src="/storage/js/data.js"></script>
+
+  <!-- FIXED GITHUB PATHS (no leading slash) -->
+  <script src="storage/js/cloak.js"></script>
+  <script src="storage/js/settings.js"></script>
+  <script src="storage/js/data.js"></script>
+<script src="/storage/js/cloak-loader.js"></script>
 </body>
 </html>
