@@ -3,346 +3,582 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Reid | Verse</title>
+  <title>Reid | Verse — Games</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="../favicon.ico">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
-
-    body {
-      font-family: Arial, sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      min-height: 100vh;
-      background: linear-gradient(to bottom, #1a1a1a, #333);
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
       color: #fff;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow-x: hidden;
     }
 
+    /* ENHANCED STARFIELD */
     .stars {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: fixed;
+      inset: 0;
       overflow: hidden;
-      z-index: 0;
       pointer-events: none;
+      z-index: 0;
     }
 
     .star {
       position: absolute;
       background: #1db954;
-      width: 2px;
-      height: 2px;
       border-radius: 50%;
-      animation: moveStar linear infinite, twinkle 2s infinite alternate;
+      animation: fall linear infinite, twinkle 3s infinite alternate;
+      box-shadow: 0 0 4px #1db954;
     }
 
-    @keyframes moveStar {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(100vh); }
+    .star.small  { width: 1px; height: 1px; }
+    .star.medium { width: 2px; height: 2px; }
+    .star.large  { width: 3px; height: 3px; box-shadow: 0 0 8px #1db954; }
+
+    @keyframes fall {
+      from { transform: translateY(-10vh); }
+      to   { transform: translateY(110vh); }
     }
 
     @keyframes twinkle {
-      0% { opacity: 0.3; }
-      100% { opacity: 1; }
+      0%, 100% { opacity: 0.2; }
+      50%       { opacity: 1; }
     }
 
-    .logo, header h1 {
-      font-size: 48px;
-      font-weight: bold;
-      color: #1db954;
-      text-shadow: 0 0 10px #1db954, 0 0 20px #1db954, 0 0 30px #1db954;
-      animation: glowPulse 2s infinite alternate;
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    @keyframes glowPulse {
-      0% {
-        text-shadow: 0 0 10px #1db954, 0 0 20px #1db954, 0 0 30px #1db954;
-        transform: scale(1);
-      }
-      100% {
-        text-shadow: 0 0 20px #1db954, 0 0 30px #1db954, 0 0 40px #1db954;
-        transform: scale(1.05);
-      }
-    }
-
-    header {
-      background: #444;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    /* GRADIENT BACKGROUND OVERLAY */
+    .bg-gradient {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at top,    rgba(29,185,84,0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(29,185,84,0.05) 0%, transparent 50%);
+      pointer-events: none;
       z-index: 1;
-      position: relative;
+    }
+
+    /* MODERN HEADER */
+    header {
+      background: rgba(20,20,20,0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 16px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(29,185,84,0.2);
     }
 
     nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
       display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+      flex-wrap: wrap;
     }
 
-    nav ul li {
-      margin: 0 10px;
-    }
-
-    nav ul li a {
-      color: #fff;
+    nav a {
+      color: rgba(255,255,255,0.8);
       text-decoration: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      transition: background 0.3s;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    nav ul li a:hover {
-      background: #3a5f3a;
+    nav a:hover {
+      color: #1db954;
+      background: rgba(29,185,84,0.1);
     }
 
+    .visitor-counter {
+      margin-left: auto;
+      padding: 8px 16px;
+      background: rgba(29,185,84,0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(29,185,84,0.3);
+    }
+
+    .visitor-counter img { vertical-align: middle; }
+
+    /* ENHANCED LOGO */
+    .logo {
+      font-size: clamp(40px, 8vw, 72px);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      background: linear-gradient(135deg, #1db954 0%, #1ed760 50%, #1db954 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: logoGlow 3s ease-in-out infinite;
+      margin: 0;
+      letter-spacing: 4px;
+      display: inline-block;
+    }
+
+    @keyframes logoGlow {
+      0%, 100% { filter: brightness(1)   drop-shadow(0 0 20px rgba(29,185,84,0.5)); }
+      50%       { filter: brightness(1.2) drop-shadow(0 0 40px rgba(29,185,84,0.8)); }
+    }
+
+    /* HERO */
     .hero {
       text-align: center;
-      padding: 50px 20px;
-      z-index: 1;
+      padding: 80px 20px 50px;
       position: relative;
-    }
-
-    .hero h2 {
-      font-size: 36px;
-      margin: 0;
+      z-index: 2;
     }
 
     .hero p {
-      font-size: 18px;
-      margin: 10px 0;
+      font-size: clamp(16px, 3vw, 20px);
+      color: rgba(255,255,255,0.7);
+      margin-top: 20px;
+      font-weight: 300;
+      letter-spacing: 1px;
     }
 
-    .features {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 20px;
-      z-index: 1;
+    /* SCROLL INDICATOR */
+    .scroll-indicator {
       position: relative;
-      flex-grow: 1;
+      margin-top: 30px;
+      animation: bounce 2s infinite;
+      display: block;
     }
 
-    .feature {
-      background: #555;
-      margin: 10px;
-      padding: 20px;
-      border-radius: 10px;
-      flex: 1 1 300px;
-      max-width: 300px;
+    .scroll-indicator::after {
+      content: '↓';
+      font-size: 24px;
+      color: #1db954;
+      opacity: 0.7;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(10px); }
+    }
+
+    /* SECTION TITLE */
+    .section-title {
       text-align: center;
-      border: 2px solid #1db954;
-      transition: background 0.3s;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      color: #1db954;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* GAME GRID */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 28px;
+      padding: 20px 60px 60px;
+      max-width: 1500px;
+      margin: 0 auto;
+      width: 100%;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* GLASSMORPHISM CARDS */
+    .feature {
+      background: linear-gradient(145deg, rgba(30,30,30,0.6), rgba(20,20,20,0.6));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 28px 24px;
+      border-radius: 16px;
+      border: 1px solid rgba(29,185,84,0.2);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feature::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(29,185,84,0.1), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
     .feature:hover {
-      background: #444;
+      transform: translateY(-8px);
+      border-color: rgba(29,185,84,0.5);
+      box-shadow: 0 20px 60px rgba(29,185,84,0.3);
     }
+
+    .feature:hover::before { opacity: 1; }
 
     .feature h3 {
-      margin-top: 0;
-    }
-
-    .feature-btn, .buttons a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 12px 30px;
-      font-size: 16px;
-      text-decoration: none;
+      font-size: 18px;
+      margin-bottom: 10px;
       color: #fff;
-      background: #1db954;
-      border: 2px solid #1db954;
+      font-weight: 600;
+      font-family: 'Orbitron', sans-serif;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature p {
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      font-size: 13px;
+      flex-grow: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ENHANCED BUTTONS */
+    .feature-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      background: linear-gradient(135deg, #1db954, #1ed760);
+      color: #000;
       border-radius: 50px;
-      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-      box-shadow: 0 0 0 transparent;
+      border: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      z-index: 1;
     }
 
-    .feature-btn:hover, .buttons a:hover {
-      background: #17a34a;
+    .feature-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1ed760, #22ff6b);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px #1db954;
+      box-shadow: 0 10px 30px rgba(29,185,84,0.5);
     }
 
-    .buttons {
-      text-align: center;
-      margin: 20px 0;
-      z-index: 1;
+    .feature-btn:hover::before { opacity: 1; }
+
+    .feature-btn span {
       position: relative;
+      z-index: 1;
     }
 
+    /* FOOTER */
     footer {
-      background: #222;
+      background: rgba(15,15,15,0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 30px 20px;
       text-align: center;
-      padding: 10px 20px;
-      z-index: 1;
-      position: relative;
+      margin-top: auto;
+      z-index: 2;
+      border-top: 1px solid rgba(29,185,84,0.2);
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      margin-top: 15px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover { color: #1db954; }
+
+    /* MOBILE */
+    @media(max-width: 768px) {
+      header { padding: 12px 20px; }
+      nav ul { gap: 4px; }
+      nav a  { padding: 8px 12px; font-size: 13px; }
+
+      .visitor-counter {
+        margin-left: 0;
+        margin-top: 8px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero { padding: 60px 20px 30px; }
+
+      .features {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        padding: 20px 20px 40px;
+        gap: 18px;
+      }
+
+      .section-title { font-size: 24px; margin-bottom: 24px; }
     }
   </style>
 </head>
 <body>
+
   <div class="stars"></div>
+  <div class="bg-gradient"></div>
 
-<header>
-  <div class="logo">Reid | Verse</div>
-  <nav>
-    <ul>
-      <li><a href="../index.html">🏠 Home</a></li>
-      <li><a href="#games">🎮 Games</a></li>
-      <li><a href="#download">⬇️ Download</a></li>
-      <li><a href="#about">ℹ️ About</a></li>
-    </ul>
-  </nav>
-</header>
-
+  <header>
+    <nav>
+      <ul>
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li><a href="#games">🎮 Games</a></li>
+        <li><a href="#download">⬇️ Download</a></li>
+        <li><a href="#about">ℹ️ About</a></li>
+        <li class="visitor-counter">
+          <img src="https://www.coolseotools.com/website-visitor-counter/count/&style=style11&show=p&num=5&uid=b03" title="Web Counter" alt="Visitor Counter" />
+        </li>
+      </ul>
+    </nav>
+  </header>
 
   <section class="hero">
-    <h2>Welcome to HTML Games</h2>
+    <h1 class="logo">Reid | Verse</h1>
     <p>Your hub for fun, interactive, and lightweight HTML5 games.</p>
- <section id="games" class="features">
- </div>
-  <div class="feature">
-    <h3>PolyTrack</h3>
-    <p>(https://kodub.itch.io/polytrack)PolyTrack is a low-poly racing game with loops, jumps and high speeds, where every millisecond counts. </p>
-    <a href="A good games\PolyTrack-unpacked\index.html" class="feature-btn">Play Now</a>
-  </div>
-    <div class="feature">
-    <h3>Eagler1.8</h3>
-    <p>Minecraft 1.8 in browser.  updated!!!!!!!</p>
-    <a href="A good games/eagler1.8/index.html" class="feature-btn">Play Now</a>
-  </div>
-   <div class="feature">
-    <h3>Choppy Orc</h3>
-    <p>unblocked!!</p>
-    <a href="A good games\choppyorc\index.html" class="feature-btn">Play Now</a>
-  </div>
-  </div>
-  <div class="feature">
-    <h3>speedstars2</h3>
-    <p>Race of the day</p>
-    <a href="A good games/speedstars2/index.html" class="feature-btn">Play Now</a>
-  </div>
-  </div>
-  <div class="feature">
-    <h3>Zombs.io</h3>
-    <p>Zombs</p>
-    <a href="A good games/zombsio/index.html" class="feature-btn">Play Now</a>
-  </div>
-  </div>
-  <div class="feature">
-    <h3>portalFlash</h3>
-    <p>Portal is a 2007 puzzle-platform game developed</p>
-    <a href="A good games\portalflash\index.html" class="feature-btn">Play Now</a>
-  </div>
-  </div>
-  <div class="feature">
-    <h3>portalFlash2</h3>
-    <p>Portal is a 2011 puzzle-platform game developed</p>
-    <a href="A good games\portal2\index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Bitlife</h3>
-    <p>it's bitlife</p>
-    <a href="A good games/bitlife/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Space Invaders</h3>
-    <p>Defend your planet from alien invaders in this retro-inspired game.</p>
-    <a href="A good games/space/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>2048</h3>
-    <p>Join the numbers and get to the 2048 tile in this addictive puzzle game.</p>
-    <a href="A good games/2048/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Cookie Clicker</h3>
-    <p>Cookie Clicker is a javascript game by Orteil and Opti.</p>
-    <a href="A good games/cookieclicker/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Drift Boss</h3>
-    <p>Stay on the course as long as possible.</p>
-    <a href="A good games/driftboss/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Slope</h3>
-    <p>Control a ball rolling down a series of slopes.</p>
-    <a href="A good games/slope/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Dino Game</h3>
-    <p>Google Dino offline clone.</p>
-    <a href="A good games/dinogame/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Roblox</h3>
-    <p>Roblox in browser.</p>
-    <a href="A good games/Roblox/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Soldier of Ruins</h3>
-    <p>First-person horror shooter set in ruins.</p>
-    <a href="A good games/soldier of Ruins/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Laser Spider</h3>
-    <p>Prototype spider physics test.</p>
-    <a href="A good games/laser-spider-playground/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Retro Bowl</h3>
-    <p>Football arcade game.</p>
-    <a href="A good games/retro bowl/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Drive Mad</h3>
-    <p>Mad car physics game.</p>
-    <a href="A good games/drive mad/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Scale the Depths</h3>
-    <p>Fishing roguelike adventure.</p>
-    <a href="A good games/Scale the Depths/index.html" class="feature-btn">Play Now</a>
-  </div>
-  <div class="feature">
-    <h3>Give me ideas</h3>
-    <p>Google forms</p>
-    <a href="https://forms.gle/WCprPgSHD1Dp4dYN8" class="feature-btn" target="_blank" rel="noopener noreferrer">|| Try Now ||</a>
-  </div>
-</section>
-  <div class="buttons">
-    <a href="#">Get Started</a>
-    <a href="#">Learn More</a>
-    <a href="#">Contact Us</a>
-  </div>
+    <span class="scroll-indicator"></span>
+  </section>
 
-  <footer>
+  <h2 class="section-title" id="games">🎮 Games</h2>
+
+  <section class="features">
+
+    <div class="feature">
+      <h3>PolyTrack</h3>
+      <p>Low-poly racing with loops, jumps and high speeds — every millisecond counts.</p>
+      <a href="A good games/PolyTrack-unpacked/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Eagler1.8</h3>
+      <p>Minecraft 1.8 in browser. Updated!!!!</p>
+      <a href="A good games/eagler1.8/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Choppy Orc</h3>
+      <p>Unblocked!!</p>
+      <a href="A good games/choppyorc/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Speed Stars 2</h3>
+      <p>Race of the day.</p>
+      <a href="A good games/speedstars2/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Zombs.io</h3>
+      <p>Survive waves of zombs.</p>
+      <a href="A good games/zombsio/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Portal Flash</h3>
+      <p>Portal — the 2007 puzzle-platform classic.</p>
+      <a href="A good games/portalflash/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Portal Flash 2</h3>
+      <p>Portal 2 — the 2011 puzzle-platform sequel.</p>
+      <a href="A good games/portal2/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Bitlife</h3>
+      <p>It's Bitlife.</p>
+      <a href="A good games/bitlife/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Space Invaders</h3>
+      <p>Defend your planet from alien invaders in this retro-inspired game.</p>
+      <a href="A good games/space/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>2048</h3>
+      <p>Join the numbers and get to the 2048 tile in this addictive puzzle game.</p>
+      <a href="A good games/2048/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Cookie Clicker</h3>
+      <p>Cookie Clicker — a javascript game by Orteil and Opti.</p>
+      <a href="A good games/cookieclicker/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Drift Boss</h3>
+      <p>Stay on the course as long as possible.</p>
+      <a href="A good games/driftboss/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Slope</h3>
+      <p>Control a ball rolling down a series of slopes.</p>
+      <a href="A good games/slope/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Dino Game</h3>
+      <p>Google Dino offline clone.</p>
+      <a href="A good games/dinogame/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Roblox</h3>
+      <p>Roblox in browser.</p>
+      <a href="A good games/Roblox/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Soldier of Ruins</h3>
+      <p>First-person horror shooter set in ruins.</p>
+      <a href="A good games/soldier of Ruins/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Laser Spider</h3>
+      <p>Prototype spider physics test.</p>
+      <a href="A good games/laser-spider-playground/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Retro Bowl</h3>
+      <p>Football arcade game.</p>
+      <a href="A good games/retro bowl/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Drive Mad</h3>
+      <p>Mad car physics game.</p>
+      <a href="A good games/drive mad/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Scale the Depths</h3>
+      <p>Fishing roguelike adventure.</p>
+      <a href="A good games/Scale the Depths/index.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Slope 2</h3>
+      <p>The sequel to the classic slope ball game. Roll, dodge, and survive!</p>
+      <a href="A good games/slope2/slope-4.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Undead Corridor</h3>
+      <p>Survive the undead in this thrilling corridor shooter.</p>
+      <a href="A good games/undeadcorridor.io/undead-corridor.html" class="feature-btn"><span>Play Now</span></a>
+    </div>
+
+    <div class="feature">
+      <h3>Give Me Ideas</h3>
+      <p>Suggest a game via Google Forms.</p>
+      <a href="https://forms.gle/WCprPgSHD1Dp4dYN8" class="feature-btn" target="_blank" rel="noopener noreferrer"><span>|| Try Now ||</span></a>
+    </div>
+
+  </section>
+
+  <footer id="about">
     <p>&copy; 2025 Reid Apps. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms of Service</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/ryyReid/Reidweb_v3vv" target="_blank">GitHub</a>
+    </div>
   </footer>
 
   <script>
-    const starsContainer = document.querySelector('.stars');
-    const numStars = 100;
-    for (let i = 0; i < numStars; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (Math.random() * 5 + 5) + 's, ' + (Math.random() * 1 + 1.5) + 's';
-      star.style.animationDelay = Math.random() * 5 + 's, ' + Math.random() * 2 + 's';
-      starsContainer.appendChild(star);
+    /* ENHANCED STARFIELD */
+    const container = document.querySelector(".stars");
+    const starCount = 100;
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+
+      const rand = Math.random();
+      if (rand < 0.6)       star.classList.add("small");
+      else if (rand < 0.9)  star.classList.add("medium");
+      else                  star.classList.add("large");
+
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.top  = Math.random() * 100 + "vh";
+      star.style.animationDuration = (Math.random() * 8 + 6) + "s";
+      star.style.animationDelay    = Math.random() * 5 + "s";
+
+      container.appendChild(star);
     }
+
+    /* SMOOTH SCROLL */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    /* INTERSECTION OBSERVER — fade cards in as they scroll into view */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity   = '1';
+          entry.target.style.transform = 'translateY(0)';
+          entry.target.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.feature').forEach(f => observer.observe(f));
   </script>
-  <script src="/storage/js/cloak.js"></script>
-  <script src="/storage/js/data.js"></script>
-  <script src="/storage/js/settings.js"></script>
-<script src="storage/js/cloak-loader.js"></script>
+
+  <script src="storage/js/cloak.js"></script>
+  <script src="storage/js/settings.js"></script>
+  <script src="storage/js/data.js"></script>
+  <script src="storage/js/cloak-loader.js"></script>
 
 </body>
 </html>
