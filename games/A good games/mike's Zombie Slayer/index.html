@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombie Slayer</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div id="ui">Health: <span id="health">100</span><span id="regenIndicator" style="color:#0f8;font-size:13px;margin-left:4px;display:none"> ↑</span><br>Score: <span id="score">0</span><br>Wave: <span id="wave">1</span><br>Kills: <span id="kills">0</span></div>
+<div id="regenBoostHud" style="display:none;position:absolute;top:90px;left:12px;font-size:13px;color:#0f8;text-shadow:0 0 8px #0f8;pointer-events:none;z-index:10;">✨ REGEN BOOST <span id="regenBoostTime">30</span>s</div>
+<div id="scoreCoins">💰 <span id="coins">0</span></div>
+<div id="ammo">🔫 <span id="ammoCount">30</span> / <span id="ammoReserve">90</span></div>
+<div id="gunName"></div>
+<div id="instructions">WASD=move • SPACE=jump • Mouse=look • LMB=shoot • R=reload • B=gun shop • ESC=unlock</div>
+<div id="dmg"></div>
+<div id="shop">
+    <h2>⚔ GUN SHOP ⚔</h2>
+    <div class="subtitle">Press B or click Close to exit • Coins earned from kills</div>
+    <div class="supplies-label">⚡ Supplies</div>
+    <div class="supplies-bar" id="suppliesBar"></div>
+    <div class="gun-grid" id="gunGrid"></div>
+    <div class="shop-nav">
+        <button id="shopPrev" onclick="shopPageChange(-1)">◀ PREV</button>
+        <span class="shop-page-label" id="shopPageLabel">Page 1 / 3</span>
+        <button id="shopNext" onclick="shopPageChange(1)">NEXT ▶</button>
+    </div>
+    <button class="shop-close" onclick="closeShop()">✖ CLOSE SHOP</button>
+    <div class="shop-hint">Tip: Kill zombies to earn 💰 coins</div>
+</div>
+<div id="settings">
+    <h2 style="text-align:center;margin:0 0 24px;font-size:24px;text-shadow:0 0 12px #0f3;">⚙ SETTINGS ⚙</h2>
+    <div style="margin-bottom:20px;">
+        <label style="display:block;margin-bottom:8px;font-size:14px;">Mouse Sensitivity: <span id="sensVal">1.0</span></label>
+        <input id="sensSlider" type="range" min="0.1" max="5" step="0.1" value="1.0"
+            style="width:100%;accent-color:#0f3;cursor:pointer;"
+            oninput="sensitivity=parseFloat(this.value);document.getElementById('sensVal').textContent=sensitivity.toFixed(1);">
+    </div>
+    <div style="margin-bottom:20px;">
+        <label style="display:block;margin-bottom:8px;font-size:14px;">Vertical Sensitivity: <span id="vSensVal">1.0</span></label>
+        <input id="vSensSlider" type="range" min="0.1" max="5" step="0.1" value="1.0"
+            style="width:100%;accent-color:#0f3;cursor:pointer;"
+            oninput="vSensitivity=parseFloat(this.value);document.getElementById('vSensVal').textContent=vSensitivity.toFixed(1);">
+    </div>
+    <button onclick="closeSettings()" style="display:block;margin:0 auto;background:#0f3;color:#000;border:none;padding:8px 28px;font-size:16px;cursor:pointer;font-family:monospace;">✖ CLOSE [TAB]</button>
+</div>
+<div id="overlay">
+    <h1 id="overlayTitle">ZOMBIE SLAYER</h1>
+    <p id="overlayMsg">Survive the zombie horde!</p>
+    <button onclick="startGame()">▶ START GAME</button>
+</div>
+<canvas id="c"></canvas>
+<script src="index.js"></script>
+</body>
+</html>
