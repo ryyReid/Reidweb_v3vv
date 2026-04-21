@@ -6,3 +6,13 @@ body {
 button {
     border-radius: 10px;
 }
+.qChip {
+    width: 22px;
+    height: 22px;
+    margin-left: 2;
+    margin-right: 2;
+    margin-top: 2;
+    margin-bottom: 7;
+    background-color: #e5dcdc;
+    float: left;
+}
